@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from app.database.database import engine
 from app.models import models
 from app.routes import auth
+from app.routes import exgen
 
 # Load environment variables
 load_dotenv()
@@ -15,12 +16,14 @@ models.Base.metadata.create_all(bind=engine)
 # Create FastAPI app
 app = FastAPI(title="Math Learning API")
 app.include_router(auth.router)
+app.include_router(exgen.router)
+
 
 # Configure CORS
 origins = os.getenv("BACKEND_CORS_ORIGINS", "http://localhost:3000").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
