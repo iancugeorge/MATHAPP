@@ -1,12 +1,12 @@
 export default function SignupCard() {
   return (
-    <section 
-      
-      style={{
-        backgroundImage: "url('../../imagini/site mate.png')",
-        backgroundSize: 'cover',
-      }}
-    >
+    <section
+    style={{
+      backgroundImage: "url('../../imagini/site mate.png')",
+      backgroundSize: 'cover',
+      backgroundPosition: 'center', // Centers the image
+      minHeight: '100vh', // Ensures the section covers the full viewport height
+    }}>
       <div>
         <img
           src="../../imagini/loginMic.jpg"
