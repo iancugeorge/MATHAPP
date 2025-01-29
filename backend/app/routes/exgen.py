@@ -14,7 +14,7 @@ def get_exercise(exercise_type: str = Query("radical"), difficulty: int = Query(
         generator = RadicalExpressionGenerator()
         if difficulty is None:
             import random
-            difficulty = random.randint(1, 7)
+            difficulty = random.randint(1, 12)
         exercise = generator.generate_exercise(difficulty)
         return exercise
     except ValueError as e:
