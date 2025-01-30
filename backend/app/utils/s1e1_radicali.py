@@ -418,7 +418,7 @@ if __name__ == "__main__":
 # Generate existing types
     for exercise_type in range(1, 14):
         try:
-            for i in range(1000):
+            for i in range(1):
                 exercise = generator.generate_exercise(exercise_type)
                 #print(f"\nType {exercise_type} Exercise:")
                 if(int(exercise['solution']) > 100):
@@ -430,18 +430,18 @@ if __name__ == "__main__":
                 if(exercise not in (rep_count_v)):
                     rep_count += 1
                     rep_count_v.append(exercise)
-                    #print("Question:", exercise['question'])
-                    #print("Solution:", exercise['solution'])
+                    print("Question:", exercise['question'])
+                    # print("Solution:", exercise['solution'])
                 
-            print(f"Type {exercise_type}")
-            print(f"Repetitions: {rep_count}")
+            # print(f"Type {exercise_type}")
+            # print(f"Repetitions: {rep_count}")
             tot += rep_count
             rep_count = 0
         except ValueError as e:
             print(f"Could not generate type {exercise_type}: {e}")
                 
-    print(f"Too big: {too_big}")
-    print(f"Negative: {negative}")
-    print(f"Too big types: {too_big_type}")
-    print(f"Negative types: {negative_type}")
-    print(f"Total: {tot}")
+    # print(f"Too big: {too_big}")
+    # print(f"Negative: {negative}")
+    # print(f"Too big types: {too_big_type}")
+    # print(f"Negative types: {negative_type}")
+    # print(f"Total: {tot}")

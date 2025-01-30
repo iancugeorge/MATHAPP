@@ -1,30 +1,45 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// App.tsx
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import MyComponent from "../components/signup"; // Adjust path if needed
+import HomePage from './pages/HomePage';
+import LoginPage from './pages/LoginPage';
+import SignupPage from './pages/SignupPage';
+import DashboardPage from './pages/DashboardPage';
+import { useState } from 'react';
 
 const queryClient = new QueryClient();
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('token') !== null;
+  });
+
   return (
     <QueryClientProvider client={queryClient}>
       <Router>
         <div className="min-h-screen bg-gray-100">
           <Routes>
-            {/* Default route shows Signup component */}
-            <Route path="/" element={<Signup />} />
+            {/* Public routes */}
+            <Route path="/" element={<HomePage />} />
+            <Route 
+              path="/login" 
+              element={isAuthenticated ? <Navigate to="/dashboard" /> : <LoginPage />} 
+            />
+            <Route 
+              path="/signup" 
+              element={isAuthenticated ? <Navigate to="/dashboard" /> : <SignupPage />} 
+            />
+            
+            {/* Protected routes */}
+            <Route
+              path="/dashboard"
+              element={isAuthenticated ? <DashboardPage /> : <Navigate to="/login" />}
+            />
           </Routes>
         </div>
       </Router>
     </QueryClientProvider>
   );
 }
-
-const Signup: React.FC = () => {
-  return (
-    <div>
-      <MyComponent />
-    </div>
-  );
-};
 
 export default App;
