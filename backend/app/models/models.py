@@ -22,9 +22,12 @@ class Topic(Base):
     __tablename__ = "topics"
 
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String(50))
+    name = Column(String(50), nullable=False)
     description = Column(String)
     prerequisite_topics = Column(ARRAY(Integer))
+    
+    # Add a relationship to exercises
+    exercises = relationship("Exercise", back_populates="topic")
 
 class UserProgress(Base):
     __tablename__ = "user_progress"
@@ -55,3 +58,17 @@ class ExerciseHistory(Base):
 
     # Relationships
     user = relationship("User", back_populates="exercise_history")
+    
+class Exercise(Base):
+    __tablename__ = "exercises"
+
+    id = Column(Integer, primary_key=True, index=True)
+    topic_id = Column(Integer, ForeignKey("topics.id"), nullable=False)
+    type = Column(String(50), nullable=False)
+    difficulty = Column(Integer, nullable=False)
+    question = Column(String, nullable=False)
+    solution = Column(Float, nullable=False)
+    hints = Column(ARRAY(String))
+
+    # Relationship: each exercise belongs to one topic
+    topic = relationship("Topic", back_populates="exercises")

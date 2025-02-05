@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from "../components/Navbar";
 
 const DashboardPage = () => {
   const navigate = useNavigate();
@@ -33,24 +34,7 @@ const DashboardPage = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Navigation */}
-      <nav className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
-              <span className="text-2xl font-bold text-blue-600">Your App</span>
-            </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-700">Welcome, {username}!</span>
-              <button
-                onClick={handleLogout}
-                className="bg-red-600 text-black px-4 py-2 rounded-md hover:bg-red-700 transition-colors"
-              >
-                Logout
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <Navbar username={username} handleLogout={handleLogout} />
 
       {/* Main Content */}
       <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -78,12 +62,19 @@ const DashboardPage = () => {
 
               {/* Example Card 3 */}
               <div className="bg-purple-50 p-6 rounded-lg">
-                <h3 className="text-lg font-semibold text-purple-900 mb-2">Quick Actions</h3>
+                <h3 className="text-lg font-semibold text-purple-900 mb-2">Invata</h3>
                 <button 
                   className="mt-2 bg-purple-600 text-black px-4 py-2 rounded-md hover:bg-purple-700 transition-colors"
-                  onClick={() => {/* Add your action here */}}
+                  onClick={() => {navigate('/lessons')}}
                 >
-                  Start Action
+                  Lectii
+                </button>
+                <div></div>
+                <button 
+                  className="mt-2 bg-purple-600 text-black px-4 py-2 rounded-md hover:bg-purple-700 transition-colors"
+                  onClick={() => {navigate('/exercise/1')}}
+                >
+                  Exercitiu
                 </button>
               </div>
             </div>

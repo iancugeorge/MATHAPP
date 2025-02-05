@@ -190,13 +190,4 @@ class MixedRepresentationGenerator:
         hints.extend(steps)
         return hints
 
-# Example usage:
-if __name__ == "__main__":
-    generator = MixedRepresentationGenerator()
-    for difficulty in [1, 2]:
-        exercise = generator.generate_exercise(difficulty)
-        print(f"\nDifficulty: {difficulty}")
-        print(f"Question: {exercise['question']}")
-        print(f"Solution: {exercise['solution']}")
-        print(f"LaTeX: {exercise['latex']}")
-        print("Hints:", exercise['hints'])
+Generator = MixedRepresentationGenerator

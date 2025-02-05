@@ -6,6 +6,9 @@ from app.database.database import engine
 from app.models import models
 from app.routes import auth
 from app.routes import exgen
+from app.routes import lessons
+from app.routes import exercises
+from app.routes import progress
 
 # Load environment variables
 load_dotenv()
@@ -17,6 +20,9 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Math Learning API")
 app.include_router(auth.router)
 app.include_router(exgen.router)
+app.include_router(lessons.router)
+app.include_router(exercises.router)
+app.include_router(progress.router)
 
 
 # Configure CORS
